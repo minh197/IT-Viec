@@ -1,14 +1,12 @@
 import React, { useEffect,useState } from 'react'
 import { useParams } from "react-router-dom";
 import moment from "moment";
-import { Row, Col, Badge } from 'react-bootstrap';
+import { Row, Col, Badge,Navbar,Form,FormControl,Button } from 'react-bootstrap';
 
 export default function Detail() {
     const { id } = useParams();
 
-    const jobSelect = () => {
-        console.log("Select job here")
-    }
+   
     let jobs = [];
     const getDetailData = async () => {
         let url = `http://localhost:3001/jobs/${id}`
@@ -34,9 +32,24 @@ export default function Detail() {
     }
 
     return (
+
         <div>
+             <div>
+            <>
+                <Navbar bg="dark" variant="dark">
+                    <Navbar.Brand href="#home">ITVIEC</Navbar.Brand>
+                  
+                    <Form inline>
+                        <FormControl type="text" placeholder="Search Jobs..." className="mr-sm-2" />
+                        <Button variant="outline-info">Search</Button>
+                    </Form>
+                </Navbar>
+                <br />
+
+            </>
+        </div>
            
-                    <div className="job-content" onClick={() => jobSelect()}>
+                    <div className="job-content" >
                         <Row>
                             <Col>
                                 <div className="jobcard-logo">
@@ -46,8 +59,8 @@ export default function Detail() {
                             <Col xs={8}>
                                 <div className="jobcard-descriptions">
                                     <h2 className="jobcard-title">{singleJob.title}</h2>
-                                    <div>$ {singleJob.salary}</div>
-                                    <div>
+                                    <div style={{color: "red"}}>$ {singleJob.salary}</div>
+                                    <div>Benefits:
                                         <ul className="benefit-list">
                                             {singleJob.benefits.map(benefit => (
                                                 <li>{benefit}</li>
@@ -55,8 +68,12 @@ export default function Detail() {
                                         </ul>
                                     </div>
                                     <div>
+                                        <h4>Description:</h4>
+                                        {singleJob.description}
+                                    </div>
+                                    <div>
                                         {singleJob.tags.map(tag => (
-                                            <Badge variant="secondary" className="badge-style">
+                                            <Badge variant="success" className="badge-style">
                                                 {tag}
                                             </Badge>
                                         ))}

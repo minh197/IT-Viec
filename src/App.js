@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Jobs from "./page/job"
 import Login from "./page/login"
 import Detail from "./page/detail"
+import FourZeroFour from "./page/FourZeroFour"
 
 import './App.css';
 
@@ -24,7 +25,8 @@ function App() {
       
         <Route path="/jobs" component={Jobs} />
         <Route path="/logins" component={Login} />
-        <Route path="/" component={Jobs} />
+        <Route exact path="/" component={Jobs} />
+        <Route path="*" component={FourZeroFour} />
         
         
         
