@@ -73,7 +73,7 @@ export default function Detail() {
                                     </div>
                                     <div>
                                         {singleJob.tags.map(tag => (
-                                            <Badge variant="success" className="badge-style">
+                                            <Badge variant="success" className="badge-style ml-4">
                                                 {tag}
                                             </Badge>
                                         ))}

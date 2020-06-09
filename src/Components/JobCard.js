@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{Link} from 'react'
 import { Row, Col, Badge } from 'react-bootstrap';
 import moment from "moment";
 import "../App.css";
@@ -20,7 +20,9 @@ export default function JobCard(props) {
         </Col>
         <Col xs={8}>
           <div className="jobcard-descriptions pl-md-4">
-            <h2 href="#/job-title"  className="jobcard-title ">{props.allJobs.title}</h2>
+            <div className="jobcard-title "> {props.allJobs.title}
+            {/* <Link to href={'/http://localhost:3001/jobs/' + props.allJobs.id}></Link> */}
+            </div>
             <div style={{color: "red"}}>$ {props.allJobs.salary}</div>
             <div>
               <ul className="benefit-list ml-4">

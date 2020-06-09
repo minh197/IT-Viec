@@ -21,7 +21,9 @@ export default function Job(props) {
     function useQuery() {
         return new URLSearchParams(useLocation().search);
     }
+    let history = useHistory();
     const handleSearch = (e) => {
+        
         let filteredJobs = allJobs;
         if (e) {
           e.preventDefault();
@@ -38,7 +40,7 @@ export default function Job(props) {
       };
     let [keyword, setKeyword] = useState(query.get(QUERYSTR_PREFIX));
     const [allJobs, setJobs] = useState(null);
-    let history=[];
+    
 
 
    
@@ -75,8 +77,8 @@ export default function Job(props) {
                                 <Nav.Link href="#pricing">Blog</Nav.Link>
                             </Nav>
                             <Form inline>
-                                <FormControl type="text" placeholder="Search Jobs..." className="mr-sm-2" onChange={(e) => keyword = e.target.value} />
-                                <Button  variant="outline-info">Search</Button>
+                                <FormControl type="text" placeholder="Search Jobs..." className="mr-sm-2" />
+                                <Button  variant="outline-info" onClick = {()=>handleSearch()} >Search</Button>
                             </Form>
                         </Navbar>
                         <br />
