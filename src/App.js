@@ -5,11 +5,18 @@ import Jobs from "./page/job"
 import Login from "./page/login"
 import Detail from "./page/detail"
 import FourZeroFour from "./page/FourZeroFour"
+import {BrowserRouter} from "react-router-dom";
+
 
 import './App.css';
 
-function App() {
-  let [user,setUser] = useState(true)//if user is true login, then login
+function App(props) {
+  let [user,setUser] = useState(false)//if user is true login, then login
+
+  
+
+
+  
 
   const ProtectedRoute = (props) => {
     if (user === true) {
@@ -20,6 +27,7 @@ function App() {
   };
   return (
     <div className="App">
+      <BrowserRouter>
       <Switch>
         <ProtectedRoute path="/jobs/:id" render={(props)=><Detail {...props}/>}/>
       
@@ -31,6 +39,7 @@ function App() {
         
         
       </Switch>
+      </BrowserRouter>
     </div>
   );
 }

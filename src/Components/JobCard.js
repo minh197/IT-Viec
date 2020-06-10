@@ -1,7 +1,12 @@
-import React,{Link} from 'react'
+import React from 'react'
 import { Row, Col, Badge } from 'react-bootstrap';
 import moment from "moment";
 import "../App.css";
+import {
+  
+  Link
+} from "react-router-dom";
+
 
 
 export default function JobCard(props) {
@@ -20,9 +25,12 @@ export default function JobCard(props) {
         </Col>
         <Col xs={8}>
           <div className="jobcard-descriptions pl-md-4">
-            <div className="jobcard-title "> {props.allJobs.title}
-            {/* <Link to href={'/http://localhost:3001/jobs/' + props.allJobs.id}></Link> */}
-            </div>
+            
+            <Link to={`/jobs/${props.allJobs.id}`} style={{ marginRight: "10px" }}>
+            <div className="jobcard-title "> {props.allJobs.title}</div>
+            </Link>
+            
+           
             <div style={{color: "red"}}>$ {props.allJobs.salary}</div>
             <div>
               <ul className="benefit-list ml-4">
