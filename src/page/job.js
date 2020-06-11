@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Navbar, FormControl, Form, Button, Nav, Container } from 'react-bootstrap';
+import { Navbar, FormControl, Form, Button, Nav, Container, Jumbotron, Carousel,Dropdown } from 'react-bootstrap';
 import JobCard from "../Components/JobCard"
-import { useHistory, useLocation ,Link} from "react-router-dom";
-import {useSelector} from "react-redux"
+import { useHistory, useLocation, Link } from "react-router-dom";
+import { useSelector } from "react-redux"
 
 
 const QUERYSTR_PREFIX = "q";
@@ -14,7 +14,7 @@ function useQuery() {
 
 export default function Job(props) {
     let query = useQuery();
-     let user = useSelector(state=>state.user)
+    let user = useSelector(state => state.user)
 
     let history = useHistory();
     console.log("What is the type of history", typeof history)
@@ -46,15 +46,15 @@ export default function Job(props) {
         }
 
         //if temp array is null then use the original list
-        if(tempArray.length ==0){
+        if (tempArray.length == 0) {
             tempArray = originalList
         }
         let filteredJobs = tempArray
 
         console.log("This is my key word", keyword)
-        
 
-        
+
+
         if (keyword) { //when we have keyword
             filteredJobs = tempArray.filter(job =>
                 job.title.toLowerCase().includes(keyword.toLowerCase())
@@ -88,15 +88,26 @@ export default function Job(props) {
 
     }
     return (
-        <div>
+        <div className="body">
             <div>
                 <>
-                    <Navbar bg="dark" variant="dark">
+                    <Navbar bg="dark" variant="dark" >
                         <Navbar.Brand to="#home">ITVIEC</Navbar.Brand>
                         <Nav className="mr-auto">
-                            <Link to="#home">All Jobs</Link>
-                            <Link to="#features">IT Companies</Link>
-                            <Link to="/logins">Log In</Link>
+                            <Link to="#home" className="pr-3" >All Jobs</Link>
+                            <Link to="#features" className="pr-3"  >IT Companies</Link>
+                            <Link to="/logins" className="pr-3"  >Log In</Link>
+                            <Dropdown>
+                                <Dropdown.Toggle  id="dropdown-basic" className="ml-5">
+                                    User Info
+                            </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <Dropdown.Item href="#/action-1">User email:{user.email}</Dropdown.Item>
+                                    
+                                </Dropdown.Menu>
+                            </Dropdown>
+
 
                         </Nav>
                         <Form inline onSubmit={(e) => searchByKeyWord(e)}>
@@ -107,9 +118,47 @@ export default function Job(props) {
                     <br />
 
                 </>
+
             </div>
             <div>
-                <h2>User email:{user.email}</h2>
+                <Jumbotron fluid className="m-0" className="body">
+                    <Container>
+
+
+                        <Carousel>
+                            <Carousel.Item>
+                                <img
+                                    className="d-block w-100"
+                                    src="https://www.rasmussen.edu/-/media/images/blogs/school-of-technology/402_sotjs_11122018-blog.jpg?la=en&hash=05AD6332CDDB1E966790DDB5D990477EFD64F28E"
+                                    alt="First slide"
+                                    className="image"
+                                />
+
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img
+                                    className="d-block w-100"
+                                    src="https://studentloanhero.com/wp-content/uploads/best-cities-for-IT-jobs.jpg"
+                                    alt="Third slide"
+                                />
+
+
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img
+                                    className="d-block w-100"
+                                    src="https://images.squarespace-cdn.com/content/v1/5a919aebda02bc813b5472f8/1571068274098-JKNL83FNQAHJJF3U7IIS/ke17ZwdGBToddI8pDm48kBNqPjcq_ZbNQ_THf030cZsUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcGIn1iJLOF_U12Cqb56ODdcUUQ8pyNBzdM2DzBB4xOO_IxmSVtPsqqjqs1pYpcayA/181030_Dane-Tech-jobs-1-million-new.jpg?format=1500w"
+                                    alt="Third slide"
+                                />
+
+
+                            </Carousel.Item>
+                        </Carousel>
+                    </Container>
+                </Jumbotron>
+            </div>
+            <div>
+              
                 <Container>
                     {allJobs && allJobs.map(item => <JobCard allJobs={item} key={item.id} />)}
                 </Container>

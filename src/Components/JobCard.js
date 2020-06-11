@@ -23,11 +23,11 @@ export default function JobCard(props) {
             <img src={props.allJobs.img} />
           </div>
         </Col>
-        <Col xs={8}>
-          <div className="jobcard-descriptions pl-md-4">
+        <Col xs={8} style={{color: "white"}}>
+          <div className="jobcard-descriptions pl-md-4 pt-3">
             
             <Link to={`/jobs/${props.allJobs.id}`} style={{ marginRight: "10px" }}>
-            <div className="jobcard-title "> {props.allJobs.title}</div>
+            <div className="jobcard-title " > {props.allJobs.title}</div>
             </Link>
             
            
@@ -48,10 +48,10 @@ export default function JobCard(props) {
             </div>
           </div>
         </Col>
-        <Col>
+        <Col style={{color: "white"}}>
           <div className="date-location-box pt-3">
             {props.allJobs.isHotjob ? (
-              <div className="hotjob-label">Hot Job</div>
+              <div  className="hotjob-label">Hot Job</div>
             ) : (
               <div></div>
             )}

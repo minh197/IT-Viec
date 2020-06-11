@@ -17,7 +17,7 @@ export default function Login(props) {
     
     const logIn = (e) => {
         e.preventDefault()// block to refresh the page
-        let user = { email: '', password: '' };
+        let user = { email: userInfo, password: '' };
         dispatch({ type: "LOGIN", payload: user })
         history.push('/jobs');
         console.log("Am i here")
